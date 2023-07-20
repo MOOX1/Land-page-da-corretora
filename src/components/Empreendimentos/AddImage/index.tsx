@@ -7,14 +7,20 @@ import Image from "next/image";
 
 interface IAddImageProps {
   label?: string;
-  key: string;
+  keySTRING: string;
+  handleImage: (value: File) => void;
 }
 
-export default function AddImage({ label, key }: IAddImageProps) {
+export default function AddImage({
+  label,
+  keySTRING: key,
+  handleImage,
+}: IAddImageProps) {
   const [previewUrl, setPreviewUrl] = useState<string>("");
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event?.target?.files?.[0];
+    handleImage(file as File);
 
     if (file) {
       const reader = new FileReader();
