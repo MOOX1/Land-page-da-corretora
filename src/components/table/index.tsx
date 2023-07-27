@@ -57,6 +57,12 @@ export default function Table() {
           <TableHead className="w-24 "> Imagem </TableHead>
           <TableHead> Nome </TableHead>
           <TableHead> Ações </TableHead>
+          <th>
+            <RotateCw
+              onClick={fetchEmpreendimentos}
+              className="cursor-pointer absolute top-3 right-3 hover:text-green-400 transition-colors w-5"
+            />
+          </th>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -83,10 +89,6 @@ export default function Table() {
           </TableRow>
         ))}
       </TableBody>
-      <RotateCw
-        onClick={fetchEmpreendimentos}
-        className="cursor-pointer absolute top-3 right-3 hover:text-green-400 transition-colors w-5"
-      />
     </TableUi>
   );
 }

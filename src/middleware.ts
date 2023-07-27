@@ -9,6 +9,7 @@ export async function middleware(request: NextRequest) {
     if (!token) {
       return NextResponse.redirect(new URL("/api/auth/signin", request.url));
     }
+    return NextResponse.next();
   }
 
   if (!request.nextUrl.pathname.startsWith("/admin")) {

@@ -2,11 +2,11 @@
 
 import { Input } from "@/components/ui/input";
 import ContextMenu from "@/components/ContextMenu";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 import Image from "next/image";
 
 interface IAddImageProps {
-  label?: string;
+  label?: string | ReactNode;
   keySTRING: string;
   handleImage: (value: File) => void;
 }
