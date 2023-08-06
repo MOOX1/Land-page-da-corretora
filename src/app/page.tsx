@@ -3,6 +3,7 @@
 import Link from "next/link";
 import empreendimento from "../assets/empreendimento1.svg";
 import Image from "next/image";
+import CardImage from "@/components/CardImage/";
 
 export default function Home() {
   return (
@@ -47,6 +48,7 @@ export default function Home() {
           <Image src={empreendimento} alt="" />
         </div>
       </div>
+      <CardImage />
     </div>
   );
 }
