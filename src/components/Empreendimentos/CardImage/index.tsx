@@ -19,8 +19,8 @@ const schema = z.object({
 type TFormDataProps = z.infer<typeof schema>;
 
 export default function CardImage() {
-  const [imageMain, setImageMain] = useState<File>();
-  const [imagePlant, setImagePlant] = useState<File>();
+  const [imageMain, setImageMain] = useState<File | undefined>();
+  const [imagePlant, setImagePlant] = useState<File | undefined>();
   const [success, setSuccess] = useState<boolean>(false);
 
   const {
@@ -60,8 +60,15 @@ export default function CardImage() {
       .then((data) => {
         if (data.status === 200) {
           setSuccess(true);
+          cleanData();
         }
       });
+  };
+
+  const cleanData = () => {
+    setImageMain(undefined);
+    setImagePlant(undefined);
+    reset();
   };
 
   const handleImage = (value: File, main: boolean) => {
@@ -86,11 +93,13 @@ export default function CardImage() {
       <div className="flex w-full gap-3">
         <div className="w-2/5 flex flex-col gap-2">
           <AddImage
+            clear={success}
             handleImage={(e) => handleImage(e, true)}
             keySTRING="main"
             label="Cadastrar imagem principal:"
           />
           <AddImage
+            clear={success}
             handleImage={(e) => handleImage(e, false)}
             keySTRING="plant"
             label="Cadastrar planta:"

@@ -2,19 +2,21 @@
 
 import { Input } from "@/components/ui/input";
 import ContextMenu from "@/components/ContextMenu";
-import { ChangeEvent, ReactNode, useState } from "react";
+import { ChangeEvent, ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 
 interface IAddImageProps {
   label?: string | ReactNode;
   keySTRING: string;
   handleImage: (value: File) => void;
+  clear: boolean;
 }
 
 export default function AddImage({
   label,
   keySTRING: key,
   handleImage,
+  clear,
 }: IAddImageProps) {
   const [previewUrl, setPreviewUrl] = useState<string>("");
 
@@ -32,6 +34,11 @@ export default function AddImage({
       reader.readAsDataURL(file);
     }
   };
+  useEffect(() => {
+    if (!clear) return;
+    setPreviewUrl("");
+  }, [clear]);
+
   return (
     <div className="full">
       <Input
