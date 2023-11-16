@@ -10,6 +10,7 @@ interface IAddImageProps {
   keySTRING: string;
   handleImage: (value: File) => void;
   clear: boolean;
+  imageUrl?: string;
 }
 
 export default function AddImage({
@@ -17,6 +18,7 @@ export default function AddImage({
   keySTRING: key,
   handleImage,
   clear,
+  imageUrl,
 }: IAddImageProps) {
   const [previewUrl, setPreviewUrl] = useState<string>("");
 
@@ -32,6 +34,7 @@ export default function AddImage({
       };
 
       reader.readAsDataURL(file);
+      imageUrl = undefined;
     }
   };
   useEffect(() => {
@@ -39,8 +42,13 @@ export default function AddImage({
     setPreviewUrl("");
   }, [clear]);
 
+  useEffect(() => {
+    if (clear) return;
+    setPreviewUrl("");
+  }, [imageUrl]);
+
   return (
-    <div className="full">
+    <div className="flex-1">
       <Input
         onChange={(e) => handleImageChange(e)}
         type="file"
@@ -49,11 +57,20 @@ export default function AddImage({
       />
       {label && <p className="text-sm">{label}</p>}
       <label htmlFor={"picture" + key} className="cursor-pointer w-full block">
-        {!previewUrl && <ContextMenu />}
-        {previewUrl && (
+        {!previewUrl && !imageUrl && <ContextMenu />}
+        {previewUrl && !imageUrl && (
           <Image
             className="aspect-video w-full rounded"
             src={previewUrl}
+            width={300}
+            height={150}
+            alt="Preview"
+          />
+        )}
+        {imageUrl && (
+          <Image
+            className="aspect-video w-full rounded"
+            src={previewUrl ? previewUrl : imageUrl}
             width={300}
             height={150}
             alt="Preview"

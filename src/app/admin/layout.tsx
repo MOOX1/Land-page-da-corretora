@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className + " bg-black text-white"}>
+      <body className={inter.className + " bg-gray-700 !text-white"}>
         <SessionProviderNextAuth>
           <Header />
           {children}

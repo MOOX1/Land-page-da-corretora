@@ -11,8 +11,15 @@ export async function GetEmpreendimentos() {
   return empreendimentos;
 }
 
+export async function GetEmpreendimento(id: string) {
+  const empreendimento = await Empreendimentos.findById(id).lean();
+
+  return empreendimento;
+}
+
 export async function CreateEmpreendimento(data: IEmpreendimentosProps) {
-  const newEmpreendimento = await Empreendimentos.create({
+  console.log(data);
+  const newEmpreendimento = await Empreendimentos.findByIdAndUpdate(data._id, {
     imageMain: data.imageMain,
     imagePlant: data.imagePlant,
     name: data.name,
@@ -20,9 +27,11 @@ export async function CreateEmpreendimento(data: IEmpreendimentosProps) {
     localizacao: data.localizacao,
   });
 
-  const empreendimento = await newEmpreendimento.save();
+  console.log(newEmpreendimento);
 
-  return { status: 200, empreendimento };
+  newEmpreendimento.save();
+
+  return { status: 200, newEmpreendimento };
 }
 
 export async function DeleteEmpreendimento(id: string) {

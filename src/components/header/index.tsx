@@ -20,11 +20,7 @@ export function Header() {
             Empreendimentos
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/admin/banners" className={"p-2 hover:bg-gray-600"}>
-            Banners
-          </Link>
-        </NavigationMenuItem>
+
         <LogOut />
       </NavigationMenuList>
     </NavigationMenu>
