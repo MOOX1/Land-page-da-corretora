@@ -3,7 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowLeft } from "lucide-react";
 
 import "swiper/css/effect-fade";
 import Link from "next/link";
@@ -38,6 +38,15 @@ export default function SliderBanner({
             height={1683}
             className="aspect-video max-h-screen w-full"
           />
+          {!name && (
+            <Link
+              href={"/"}
+              className="absolute text:black flex gap-2 top-5 bg-white/30 rounded p-2 left-5"
+            >
+              <ArrowLeft className="text-black" />
+              <p className="text-black">/home</p>
+            </Link>
+          )}
           {name && (
             <>
               <div className="bg-gradient-to-t from-gray-700 to-transparent opacity-80  duration-300 transition-all absolute inset-0"></div>

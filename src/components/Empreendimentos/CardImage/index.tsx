@@ -60,7 +60,6 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
   });
 
   const onSubmit = async (data: TFormDataProps) => {
-    console.log(data);
     setSuccess(false);
     if (!imageMain && !itemSelected?.imageMain) return;
     if (!imagePlant && !itemSelected?.imagePlant) return;
@@ -95,7 +94,7 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
 
   useEffect(() => {
     if (!itemSelected) return;
-    console.log(itemSelected);
+
     setValue("description", itemSelected.description);
     setValue("localizacao", itemSelected.localizacao);
     setValue("name", itemSelected.name);

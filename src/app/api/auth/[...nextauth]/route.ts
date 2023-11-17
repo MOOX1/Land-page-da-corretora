@@ -18,8 +18,6 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log(credentials);
-
         if (credentials?.email !== "example@gmail.com") return null;
         if (credentials?.password !== "123456") return null;
         const user = { id: "1", name: "Bruna", email: "admin@admin.com" };

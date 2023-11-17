@@ -1,7 +1,4 @@
-import Link from "next/link";
-import empreendimento from "../assets/empreendimento1.svg";
 import SliderBanner from "@/components/SlideBanner";
-import Image from "next/image";
 import CardImage from "@/components/CardImage";
 import { IEmpreendimentosProps } from "@/lib/schemas/Empreendimentos";
 

@@ -9,7 +9,5 @@ export async function GET(req: NextRequest) {
 
   const response = await GetEmpreendimento(id ?? "");
 
-  console.log(response);
-
   return NextResponse.json(response);
 }

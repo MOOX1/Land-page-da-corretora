@@ -39,23 +39,22 @@ export default async function Empreendimento({ params }: IEmpreendimento) {
       <SliderBanner image={empreendimento?.imageMain ?? ""} />
       <div className="flex sm:flex-col md:flex-row gap-8 md:mt-10 sm:pt-4 md:pt-0">
         <div className="flex-1 md:pl-20 md:mt-14 sm:items-center  flex flex-col md:items-baseline gap-6">
-          <h1 className="text-3xl sm:w-full md:w-min sm:text-center md:text-left">
+          <h1 className="text-3xl sm:w-full md:w-min md:whitespace-nowrap sm:text-center md:text-left">
             {empreendimento?.name}
           </h1>
           <p className="md:pl-10 md:text-left sm:text-justify sm:w-4/5 md:w-full">
             {empreendimento?.description}
           </p>
-          <div className="flex justify-evenly w-full  p-2 rounded">
-            <div className="flex  flex-col items-center">
-              <Ruler />
-              {empreendimento?.specifications.houseSize}m²
-            </div>
-
+          <div className="flex md:flex-row sm:flex-row-reverse justify-evenly w-full  p-2 rounded">
             <div className="flex flex-col items-center">
               <BedDouble />
               {empreendimento?.specifications.bedrooms} Quartos
             </div>
 
+            <div className="flex  flex-col items-center">
+              <Ruler />
+              {empreendimento?.specifications.houseSize}m²
+            </div>
             <div className="flex flex-col items-center">
               <Bath />
               {empreendimento?.specifications.bathroom} Banheiros
