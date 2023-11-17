@@ -40,8 +40,8 @@ export default function SliderBanner({
           />
           {name && (
             <>
-              <div className="bg-gradient-to-t from-gray-700 to-transparent opacity-80 duration-300 transition-all absolute inset-0"></div>
-              <div className="absolute uppercase sm:inset-0 justify-center pl-24 flex flex-col top-1/2 left-[15%]">
+              <div className="bg-gradient-to-t from-gray-700 to-transparent opacity-80  duration-300 transition-all absolute inset-0"></div>
+              <div className="absolute uppercase md:inset-0 sm:inset-0 justify-center sm:pl-4 flex flex-col md:left-[15%]">
                 <div className=" text-white flex flex-col  sm:w-max   whitespace-nowrap w-min  rounded-s-none rounded ">
                   <p className="border-b md:text-4xl lg:text-6xl sm:text-lg  border-white w-min">
                     {name}

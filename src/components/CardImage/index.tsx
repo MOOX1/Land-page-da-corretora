@@ -14,7 +14,7 @@ export default function CardImage({ data }: { data: IEmpreendimentosProps[] }) {
             className="group/item cursor-pointer transition-all duration-300 w-1/4 md:flex-1 flex-wrap sm:w-[50%] md:hover:flex-[2] h-auto overflow-hidden relative bg-blue-200"
           >
             <div className="z-50 absolute sm:left-5 sm:top-10 left-14 top-16 ">
-              <h1 className=" text-2xl sm:text-lg font-bold text-white whitespace-nowrap">
+              <h1 className=" text-2xl sm:text-lg font-bold text-white md:whitespace-nowrap">
                 {item.name}
               </h1>
             </div>
