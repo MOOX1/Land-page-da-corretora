@@ -34,17 +34,19 @@ export default async function Empreendimento({ params }: IEmpreendimento) {
 
   const urlMaps = empreendimento?.localizacao.split('src="')[1].split('"')[0];
 
-  console.log(urlMaps);
-
   return (
     <div>
       <SliderBanner image={empreendimento?.imageMain ?? ""} />
-      <div className="flex gap-8 mt-10">
-        <div className="flex-1 pl-20 mt-14  flex flex-col items-baseline gap-6">
-          <h1 className="text-3xl">{empreendimento?.name}</h1>
-          <p className="pl-10 w-full">{empreendimento?.description}</p>
+      <div className="flex sm:flex-col md:flex-row gap-8 md:mt-10 sm:pt-4 md:pt-0">
+        <div className="flex-1 md:pl-20 md:mt-14 sm:items-center  flex flex-col md:items-baseline gap-6">
+          <h1 className="text-3xl sm:w-full md:w-min sm:text-center md:text-left">
+            {empreendimento?.name}
+          </h1>
+          <p className="md:pl-10 md:text-left sm:text-justify sm:w-4/5 md:w-full">
+            {empreendimento?.description}
+          </p>
           <div className="flex justify-evenly w-full  p-2 rounded">
-            <div className="flex flex-col items-center">
+            <div className="flex  flex-col items-center">
               <Ruler />
               {empreendimento?.specifications.houseSize}m²
             </div>
@@ -72,8 +74,7 @@ export default async function Empreendimento({ params }: IEmpreendimento) {
       <div className="flex justify-center my-8">
         <iframe
           src={urlMaps}
-          width="600"
-          height="450"
+          className="aspect-video w-4/5"
           style={{ border: "0" }}
           allowFullScreen
           loading="lazy"
