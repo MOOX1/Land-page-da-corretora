@@ -74,7 +74,8 @@ export default async function Empreendimento({ params }: IEmpreendimento) {
       <div className="flex justify-center my-8">
         <iframe
           src={urlMaps}
-          className="aspect-video w-4/5"
+          width="600"
+          height="450"
           style={{ border: "0" }}
           allowFullScreen
           loading="lazy"
