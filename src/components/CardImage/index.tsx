@@ -4,17 +4,17 @@ import Link from "next/link";
 
 export default function CardImage({ data }: { data: IEmpreendimentosProps[] }) {
   return (
-    <div className="w-full  flex  h-[40rem]  overflow-hidden">
+    <div className="w-full  flex sm:flex-wrap h-[40rem]  overflow-hidden">
       {data?.map((item, index) => {
         if (index == 0) return;
         return (
           <Link
             href={`/${item._id}`}
             key={index}
-            className="group/item cursor-pointer transition-all duration-300 w-1/4 flex-1 hover:flex-[2] h-auto overflow-hidden relative bg-blue-200"
+            className="group/item cursor-pointer transition-all duration-300 w-1/4 md:flex-1 flex-wrap sm:w-[50%] md:hover:flex-[2] h-auto overflow-hidden relative bg-blue-200"
           >
-            <div className="z-50 absolute left-14 top-16 ">
-              <h1 className=" text-2xl font-bold text-white whitespace-nowrap">
+            <div className="z-50 absolute sm:left-5 sm:top-10 left-14 top-16 ">
+              <h1 className=" text-2xl sm:text-lg font-bold text-white whitespace-nowrap">
                 {item.name}
               </h1>
             </div>

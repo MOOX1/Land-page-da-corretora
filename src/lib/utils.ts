@@ -10,7 +10,7 @@ export async function PostImage(image: File) {
     const formData = new FormData();
 
     formData.append("file", image as unknown as string);
-    formData.append("upload_preset", "kjoct0g0");
+    formData.append("upload_preset", "ml_default");
 
     const response = await fetch(
       `https://api.cloudinary.com/v1_1/dujfpbvdh/upload`,
