@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React, { ReactNode } from "react";
 import Link from "next/link";
 import LogOut from "../LogOut";
 
@@ -11,18 +11,25 @@ import {
   navigationMenuTriggerStyleLink,
 } from "@/components/ui/navigation-menu";
 
-export function Header() {
-  return (
-    <NavigationMenu className="sticky top-0 flex justify-center">
-      <NavigationMenuList className="border-b border-white flex justify-center w-screen relative">
-        <NavigationMenuItem className="py-2 hover:bg-gray-600">
-          <Link href="/admin" className={"p-2"}>
-            Empreendimentos
-          </Link>
-        </NavigationMenuItem>
+interface IHeaderProps {
+  children: ReactNode;
+}
 
-        <LogOut />
-      </NavigationMenuList>
-    </NavigationMenu>
+export function Header({ children }: IHeaderProps) {
+  return (
+    <div className="h-full relative ">
+      <NavigationMenu>
+        <NavigationMenuList className="border-b border-white flex justify-center w-screen relative">
+          <NavigationMenuItem className="py-2 hover:bg-gray-600">
+            <Link href="/admin" className={"p-2"}>
+              Empreendimentos
+            </Link>
+          </NavigationMenuItem>
+
+          <LogOut />
+        </NavigationMenuList>
+      </NavigationMenu>
+      <div className="h-full">{children}</div>
+    </div>
   );
 }

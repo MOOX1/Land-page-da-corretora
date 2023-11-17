@@ -1,20 +1,30 @@
 "use client";
 
 import AddImage from "@/components/Empreendimentos/AddImage";
-import { Input } from "@/components/ui/input";
+
+import Input from "./Input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Control, UseFormReturn, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as zod from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { TypeOf, z } from "zod";
 import { useEffect, useState } from "react";
 import { PostImage } from "@/lib/utils";
 import { IEmpreendimentosProps } from "@/lib/schemas/Empreendimentos";
+
+const specificationsSchema = z
+  .object({
+    bathroom: z.string().optional(),
+    bedrooms: z.string().optional(),
+    houseSize: z.string().optional(),
+  })
+  .optional();
 
 const schema = z.object({
   name: z.string().min(1, "Informe um email válido"),
   localizacao: z.string().min(1, "Campo Obrigatório"),
   description: z.string().min(1, "Campo Obrigatório"),
+  specifications: specificationsSchema,
 });
 
 type TFormDataProps = z.infer<typeof schema>;
@@ -50,6 +60,7 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
   });
 
   const onSubmit = async (data: TFormDataProps) => {
+    console.log(data);
     setSuccess(false);
     if (!imageMain && !itemSelected?.imageMain) return;
     if (!imagePlant && !itemSelected?.imagePlant) return;
@@ -84,9 +95,11 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
 
   useEffect(() => {
     if (!itemSelected) return;
+    console.log(itemSelected);
     setValue("description", itemSelected.description);
     setValue("localizacao", itemSelected.localizacao);
     setValue("name", itemSelected.name);
+    setValue("specifications", itemSelected.specifications);
     setItemSelect(itemSelected);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemSelected]);
@@ -102,7 +115,7 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
       {itemSelected && (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex-[3] bg-white w-full text-black relative rounded h-full p-3"
+          className="flex-[3] bg-white w-full overflow-y-scroll text-black relative rounded h-full p-3"
         >
           {success && (
             <p className="absolute top-5 right-5 text-green-600">
@@ -112,7 +125,7 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
           <h1 className="w-full py-2 text-center border-b border-gray-200 mb-2">
             Adicionar novo empreendimento
           </h1>
-          <div className="flex flex-col flex-1 w-full gap-3">
+          <div className="flex flex-col flex-1 w-full overflow-auto gap-3">
             <div className="w-full flex gap-2 h-max justify-center">
               <AddImage
                 clear={success}
@@ -129,21 +142,37 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
                 label="Cadastrar planta:"
               />
             </div>
-            <div className="flex w-full flex-col ">
-              <p className="text-sm">Nome:</p>
-              <Input
-                type="text"
-                className="rounded w-full placeholder:text-gray-400 text-sm p-1 mb-3"
-                placeholder="Nome do empreendimento"
-                {...register("name")}
+            <div className="flex w-full flex-col gap-2">
+              <Input<TFormDataProps>
+                label="Nome:"
+                registerString="name"
+                register={register}
               />
-              <p className="text-sm">Localização:</p>
-              <Input
-                type="text"
-                className="rounded w-full placeholder:text-gray-400 text-sm p-1 mb-3"
-                placeholder="Localização:"
-                {...register("localizacao")}
+              <Input<TFormDataProps>
+                label="Localização:"
+                registerString="localizacao"
+                register={register}
               />
+
+              <div className="flex gap-2">
+                <Input<TFormDataProps>
+                  label="Metrôs quadrados:"
+                  registerString="specifications.houseSize"
+                  register={register}
+                />
+
+                <Input<TFormDataProps>
+                  label="Banheiros:"
+                  registerString="specifications.bathroom"
+                  register={register}
+                />
+
+                <Input<TFormDataProps>
+                  label="Quartos:"
+                  register={register}
+                  registerString="specifications.bedrooms"
+                />
+              </div>
               <p className="text-sm">Descrição</p>
               <Textarea
                 placeholder="descrição do empreendimento"
@@ -151,6 +180,7 @@ export default function CardImage({ itemSelected }: ICardImageProps) {
                 rows={10}
                 {...register("description")}
               />
+
               <Button
                 variant={"outline"}
                 type="submit"

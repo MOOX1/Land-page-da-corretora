@@ -8,7 +8,7 @@ export default function About() {
   return (
     <div className="mpy-16 bg-black/30 flex items-center justify-center w-full">
       <div className=" flex flex-col items-center gap-3 justify-center">
-        <p className="text-3xl ">ZAHA HADID</p>
+        <p className="text-3xl uppercase">Bruna Morais</p>
         <div className="flex items-center">
           <Image src={People} alt="" />
         </div>

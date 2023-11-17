@@ -18,18 +18,20 @@ export async function GetEmpreendimento(id: string) {
 }
 
 export async function CreateEmpreendimento(data: IEmpreendimentosProps) {
-  console.log(data);
-  const newEmpreendimento = await Empreendimentos.findByIdAndUpdate(data._id, {
-    imageMain: data.imageMain,
-    imagePlant: data.imagePlant,
-    name: data.name,
-    description: data.description,
-    localizacao: data.localizacao,
-  });
+  const newEmpreendimento = await Empreendimentos.findByIdAndUpdate(
+    { _id: data._id },
+    {
+      imageMain: data.imageMain,
+      imagePlant: data.imagePlant,
+      name: data.name,
+      description: data.description,
+      localizacao: data.localizacao,
+      specifications: data.specifications,
+    },
+    { new: true }
+  );
 
-  console.log(newEmpreendimento);
-
-  newEmpreendimento.save();
+  newEmpreendimento?.save();
 
   return { status: 200, newEmpreendimento };
 }

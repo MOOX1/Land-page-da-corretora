@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import SliderBanner from "@/components/SlideBanner";
 import { IEmpreendimentosProps } from "@/lib/schemas/Empreendimentos";
+import { Bath, BedDouble, Ruler } from "lucide-react";
 import Image from "next/image";
 
 interface IEmpreendimento {
@@ -42,6 +43,22 @@ export default async function Empreendimento({ params }: IEmpreendimento) {
         <div className="flex-1 pl-20 mt-14  flex flex-col items-baseline gap-6">
           <h1 className="text-3xl">{empreendimento?.name}</h1>
           <p className="pl-10 w-full">{empreendimento?.description}</p>
+          <div className="flex justify-evenly w-full  p-2 rounded">
+            <div className="flex flex-col items-center">
+              <Ruler />
+              {empreendimento?.specifications.houseSize}m²
+            </div>
+
+            <div className="flex flex-col items-center">
+              <BedDouble />
+              {empreendimento?.specifications.bedrooms} Quartos
+            </div>
+
+            <div className="flex flex-col items-center">
+              <Bath />
+              {empreendimento?.specifications.bathroom} Banheiros
+            </div>
+          </div>
         </div>
         <div className="flex-1 flex items-end justify-end aspect-video w-full h-auto">
           <Image
