@@ -25,6 +25,7 @@ export default function Table({ onClick }: ITableProps) {
   const fetchEmpreendimentos = async () => {
     try {
       fetch("/api/empreendimentos", {
+        cache: "no-cache",
         next: {
           revalidate: 0,
         },
